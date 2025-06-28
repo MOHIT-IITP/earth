@@ -1,8 +1,9 @@
+import Notes from '@/components/Notes'
 import React from 'react'
 
 const Home = () => {
   return (
-    <div>Welcome to Home Page</div>
+    <Notes />
   )
 }
 
