@@ -1,3 +1,4 @@
+import UserProfile from '@/components/UserProfile'
 import Link from 'next/link'
 import React from 'react'
 
