@@ -2,8 +2,8 @@
 import { createClient } from "@/auth/server"
 
 export const SignUpAction = async (email: string, password: string) => {
-    const { auth } = await createClient();
     try {
+        const { auth } = await createClient();
         const { data, error } = await auth.signUp({
             email, password
         });
@@ -21,4 +21,22 @@ export const SignUpAction = async (email: string, password: string) => {
         console.log(error);
         return {errorMessage: error};
     }
+}
+
+export const LoginAction = async (email: string, password: string) => {
+    try {
+        const {auth} = await createClient();
+        const {data, error} = await auth.signInWithPassword({
+            email, password
+        })
+
+        if(error) throw error;
+
+        const userid = data.user?.id;
+
+        if(!userid) throw new Error("UserId not found after login");
+    } catch (error) {
+        
+    }
+
 }

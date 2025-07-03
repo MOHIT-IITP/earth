@@ -15,6 +15,12 @@ const page = () => {
         <Link href="/home" className='bg-violet-500 hover:bg-violet-600 text-white px-8 py-3 rounded-xl mt-10 font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-violet-500/25'>
           Explore
         </Link>
+        <Link href="/login" className='bg-violet-500 hover:bg-violet-600 text-white px-8 py-3 rounded-xl mt-10 font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-violet-500/25'>
+          Login
+        </Link>
+        <Link href="/signup" className='bg-violet-500 hover:bg-violet-600 text-white px-8 py-3 rounded-xl mt-10 font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-violet-500/25'>
+          Signup
+        </Link>
       </div>
     </div>
   )

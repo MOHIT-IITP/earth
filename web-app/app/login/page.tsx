@@ -1,3 +1,5 @@
+"use client"
+import { LoginAction } from '@/actions/user';
 import { useState } from 'react';
 
 const LoginPage = () => {
@@ -6,14 +8,16 @@ const LoginPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+    let errorMessage = LoginAction(email, password);
+    return errorMessage;
+    console.log(errorMessage);
     alert(`Email: ${email}\nPassword: ${password}`);
   };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded shadow-md w-80 space-y-6">
-        <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
+        <h2 className="text-2xl font-bold text-black text-center mb-4">Login</h2>
         <div>
           <label className="block text-gray-700">Email</label>
           <input
