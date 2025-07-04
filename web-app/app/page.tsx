@@ -14,11 +14,6 @@ const Page = async () => {
     return (
         <div className='flex flex-col items-center justify-center h-screen'>
             <div className='text-center space-y-6'>
-                {user && user.email && (
-                    <div>
-                        <button onClick={handleLogout()}>Logout</button>
-                    </div>
-                )}
                 <h1 className='text-6xl font-bold text-white drop-shadow-lg'>
                     Welcome to <span className='text-violet-300'>Earth</span>
                 </h1>
