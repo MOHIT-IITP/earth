@@ -4,12 +4,12 @@ import Draw from '@/components/Draw'
 import Notes from '@/components/Notes'
 import Sidebar from '@/components/Sidebar'
 import Todo from '@/components/Todo'
-import React, { useState } from 'react'
+import React, { useState, ReactNode } from 'react'
 
 export default function HomeLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   const [activeSection, setActiveSection] = useState('home')
 

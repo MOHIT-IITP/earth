@@ -1,6 +1,7 @@
 "use client"
 import { SignUpAction } from '@/actions/user';
 import { useState } from 'react';
+import Link from 'next/link';
 
 const SignupPage = () => {
   const [email, setEmail] = useState('');
@@ -44,6 +45,10 @@ const SignupPage = () => {
         >
           Sign Up
         </button>
+        <div className="flex flex-col gap-2 mt-4">
+          <Link href="/home" className="w-full bg-violet-200 hover:bg-violet-300 text-violet-800 py-2 rounded text-center font-semibold transition-all duration-300">Go to Home</Link>
+          <Link href="/login" className="w-full bg-violet-200 hover:bg-violet-300 text-violet-800 py-2 rounded text-center font-semibold transition-all duration-300">Go to Login</Link>
+        </div>
       </form>
     </div>
   );
