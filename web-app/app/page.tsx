@@ -4,20 +4,20 @@ import Link from 'next/link';
 
 const Page = async () => {
     const user = await getUser();
+
     const handleLogout = async () => {
-        let errorMessage = LogOutAction();
+        let errorMessage = await LogOutAction();
+        console.log(errorMessage);
         return errorMessage;
     }
 
     return (
         <div className='flex flex-col items-center justify-center h-screen'>
             <div className='text-center space-y-6'>
-                {user && user.email ? (
+                {user && user.email && (
                     <div>
                         <button onClick={handleLogout()}>Logout</button>
                     </div>
-                ) : (
-                    <div>nothing</div>
                 )}
                 <h1 className='text-6xl font-bold text-white drop-shadow-lg'>
                     Welcome to <span className='text-violet-300'>Earth</span>

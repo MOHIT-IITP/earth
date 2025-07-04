@@ -2,15 +2,23 @@
 import Link from 'next/link';
 import { LoginAction } from '@/actions/user';
 import { useState } from 'react';
+import { showErrorToast, showSuccessToast } from '@/lib/toastUtils';
 
-const LoginPage = () => {
+const LoginPage =  () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    let errorMessage = LoginAction(email, password);
-    return errorMessage;
+
+    const { errorMessage } = await LoginAction(email, password);
+
+    if (errorMessage) {
+      showErrorToast(errorMessage);
+    }else{
+      showSuccessToast("You are Successfully LoggedIn");
+    }
   };
 
   return (
