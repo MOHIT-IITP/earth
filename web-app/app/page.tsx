@@ -1,15 +1,8 @@
-import { LogOutAction } from '@/actions/user';
 import { getUser } from '@/auth/server';
 import Link from 'next/link';
 
 const Page = async () => {
     const user = await getUser();
-
-    const handleLogout = async () => {
-        let errorMessage = await LogOutAction();
-        console.log(errorMessage);
-        return errorMessage;
-    }
 
     return (
         <div className='flex flex-col items-center justify-center h-screen'>
@@ -30,18 +23,6 @@ const Page = async () => {
                         className='bg-violet-500 hover:bg-violet-600 text-white px-8 py-3 rounded-xl mt-10 font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-violet-500/25'
                     >
                         Explore
-                    </Link>
-                    <Link
-                        href="/login"
-                        className='bg-violet-500 hover:bg-violet-600 text-white px-8 py-3 rounded-xl mt-10 font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-violet-500/25'
-                    >
-                        Login
-                    </Link>
-                    <Link
-                        href="/signup"
-                        className='bg-violet-500 hover:bg-violet-600 text-white px-8 py-3 rounded-xl mt-10 font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-violet-500/25'
-                    >
-                        SignUp
                     </Link>
                 </div>
             </div>
