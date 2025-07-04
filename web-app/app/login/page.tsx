@@ -1,4 +1,5 @@
 "use client"
+import Link from 'next/link';
 import { LoginAction } from '@/actions/user';
 import { useState } from 'react';
 
@@ -10,8 +11,6 @@ const LoginPage = () => {
     e.preventDefault();
     let errorMessage = LoginAction(email, password);
     return errorMessage;
-    console.log(errorMessage);
-    alert(`Email: ${email}\nPassword: ${password}`);
   };
 
   return (
@@ -44,6 +43,10 @@ const LoginPage = () => {
         >
           Login
         </button>
+        <div className="flex flex-col gap-2 mt-4">
+          <Link href="/home" className="w-full bg-violet-200 hover:bg-violet-300 text-violet-800 py-2 rounded text-center font-semibold transition-all duration-300">Go to Home</Link>
+          <Link href="/login" className="w-full bg-violet-200 hover:bg-violet-300 text-violet-800 py-2 rounded text-center font-semibold transition-all duration-300">Go to Login</Link>
+        </div>
       </form>
     </div>
   );

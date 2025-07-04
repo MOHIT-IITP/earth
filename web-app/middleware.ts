@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getUser } from "./auth/server";
-import { url } from "inspector";
 
 export async function middleware(request: NextRequest){
     const {pathname} = request.nextUrl;
@@ -8,8 +7,17 @@ export async function middleware(request: NextRequest){
     console.log(pathname);
 
     const user = await getUser();
+
+    const PUBLIC_PATH = ['/login', '/signup'];
+
+    const isPublicPath = PUBLIC_PATH.some((path) => {
+        return pathname.startsWith(path);
+    })
+
+
     console.log(user);
-    if(!user){
+
+    if(!user && !isPublicPath){
         return NextResponse.redirect(new URL('/login', request.url));
     }
 
