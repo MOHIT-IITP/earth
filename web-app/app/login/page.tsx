@@ -81,13 +81,13 @@ const LoginPage = () => {
             href="/home"
             className="w-full bg-white/10 hover:bg-white/20 text-white py-2 rounded-lg text-center font-semibold border border-white/30 transition-all duration-200 shadow-sm backdrop-blur-sm"
           >
-            Go to Home
+            Home
           </Link>
           <Link
-            href="/login"
+            href="/signup"
             className="w-full bg-white/5 hover:bg-white/15 text-white py-2 rounded-lg text-center font-semibold border border-white/20 transition-all duration-200 shadow-sm backdrop-blur-sm"
           >
-            Go to Login
+            Go to SignUp 
           </Link>
         </div>
       </div>
