@@ -9,12 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@prisma/client": "^6.11.1",
-    "next": "15.3.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-=======
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.50.3",
     "class-variance-authority": "^0.7.1",
@@ -30,7 +25,6 @@
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.2",
     "tailwind-merge": "^3.3.1"
->>>>>>> bc898598f130d713b7b72024fac834c088eef533
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -38,10 +32,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "tailwindcss": "^4",
-<<<<<<< HEAD
-=======
     "tw-animate-css": "^1.3.5",
->>>>>>> bc898598f130d713b7b72024fac834c088eef533
     "typescript": "^5"
   }
 }
