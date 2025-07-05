@@ -2,7 +2,7 @@ import React from 'react'
 
 const Todo = () => {
   return (
-    <div>Welcome to Todo</div>
+    <div className='mt-20'>Welcome to Todo</div>
   )
 }
 
