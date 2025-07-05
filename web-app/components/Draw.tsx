@@ -2,7 +2,7 @@ import React from 'react'
 
 const Draw = () => {
   return (
-    <div>Welcome to draw</div>
+    <div className='mt-20'>Welcome to draw</div>
   )
 }
 
