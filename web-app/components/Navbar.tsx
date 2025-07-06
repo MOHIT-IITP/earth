@@ -26,7 +26,7 @@ const Navbar = async () => {
         </span>
       ) : (
         <div>
-          <button className="text-blue-600 font-semibold">
+          <button className="text-white font-semibold">
             Login
           </button>
         </div>
