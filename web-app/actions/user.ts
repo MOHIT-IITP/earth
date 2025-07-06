@@ -1,10 +1,22 @@
 "use server"
 import { createClient } from "@/auth/server";
+import { prisma } from "@/db/prisma";
 import { handleError } from "@/lib/utils";
 
 export const SignUpAction = async (email: string, password: string) => {
     try {
         const { auth } = await createClient();
+
+        // Check if user already exists before attempting signup
+        const tableUser = await prisma.user.findFirst({
+            where: {
+                email: email
+            }
+        });
+        if (tableUser) {
+            return { errorMessage: "User Already exists, Please Login" };
+        }
+
         const { data, error } = await auth.signUp({
             email,
             password,
@@ -19,6 +31,13 @@ export const SignUpAction = async (email: string, password: string) => {
         if (!userid) {
             return { errorMessage: "UserId not found after SignUp" };
         }
+
+        await prisma.user.create({
+            data: {
+                id: userid,
+                email
+            }
+        });
 
         return { errorMessage: null };
     } catch (error) {

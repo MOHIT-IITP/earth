@@ -7,19 +7,45 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Note {
-  id        Int     @id @default(uuid())
-  title     String
-  author    User @relation(fields: [authorId], references: [id]) 
-  authorId  String
-  content   String?
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  notes     Note[]
+  todos     Todo[]
   createdAt DateTime @default(now())
-  updateAt  DateTime @updateAt @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-model User {
-  id    String     @id @default(uuid())
-  email String  @unique
-  name  String?
-  Notes Note[]
+model Note {
+  id        String   @id @default(uuid())
+  title     String
+  content   Json?    // For EditorJS data structure
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId  String
+  todos     Todo[]   // Related todos
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Todo {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  completed   Boolean  @default(false)
+  priority    Priority @default(MEDIUM)
+  dueDate     DateTime?
+  author      User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId    String
+  note        Note?    @relation(fields: [noteId], references: [id], onDelete: SetNull)
+  noteId      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
 }

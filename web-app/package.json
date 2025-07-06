@@ -6,7 +6,11 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate": "npx prisma generate && env $(cat .env.local | xargs) npx prisma migrate dev"
+  },
+  "prisma" : {
+    "schema" : "./db/schema.prisma"
   },
   "dependencies": {
     "@prisma/client": "^6.11.1",
