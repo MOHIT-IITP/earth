@@ -19,6 +19,7 @@ const SignupPage = () => {
       showErrorToast(errorMessage);
     }else{
       showSuccessToast("Your are successfully LoggedIn");
+      window.location.href = '/';
     }
     setLoading(false);
   };
@@ -91,7 +92,7 @@ const SignupPage = () => {
             href="/login"
             className="w-full bg-white/5 hover:bg-white/15 text-white py-2 rounded-lg text-center font-semibold border border-white/20 transition-all duration-200 shadow-sm backdrop-blur-sm"
           >
-            Already have an account? Sign in
+            Go to Login
           </Link>
         </div>
       </div>

@@ -19,6 +19,7 @@ const LoginPage = () => {
       showErrorToast(errorMessage);
     } else {
       showSuccessToast("You are Successfully LoggedIn");
+      window.location.href = '/';
     }
     setLoading(false);
   };

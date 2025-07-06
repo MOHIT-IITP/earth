@@ -1,12 +1,16 @@
 import { LogOutAction } from '@/actions/user';
 import { getUser } from '@/auth/server'
+import Link from 'next/link';
 import React from 'react'
 
 const Navbar = async () => {
   const user = await getUser();
   return (
     <nav className="fixed left-1/2 top-8 z-50 -translate-x-1/2 bg-white/30 backdrop-blur-md shadow-lg rounded-full px-8 py-2 flex items-center justify-between min-w-[260px] max-w-md w-[90vw]">
-      <span className="text-lg font-semibold text-white">Earth</span>
+
+      <Link href={'/'}>
+        <span className="text-lg font-semibold text-white">Earth</span>
+      </Link>
 
       {user && user.email ? (
         <span className="text-white flex gap-2 relative group cursor-pointer">
