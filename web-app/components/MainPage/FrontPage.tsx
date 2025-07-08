@@ -1,5 +1,5 @@
 'use client'
-import Aurora from './Aurora'
+import Aurora from '../Aurora'
 import React from 'react'
 
 const FrontPage = () => {

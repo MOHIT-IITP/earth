@@ -1,5 +1,5 @@
 'use client'
-import SplitText from './SplitText'
+import SplitText from '../SplitText'
 import React from 'react'
 
 const WelcomeText = () => {
