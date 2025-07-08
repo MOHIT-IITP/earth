@@ -9,6 +9,8 @@ const mockNotes = [
 const NotesSidebar = () => {
   const [notes, setNotes] = useState(mockNotes)
   const [selectedNoteId, setSelectedNoteId] = useState<number | null>(notes[0]?.id || null)
+  const [isUpdating, setIsUpdating] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleSelectNote = (id: number) => {
     setSelectedNoteId(id)
@@ -22,6 +24,37 @@ const NotesSidebar = () => {
     }
     setNotes([newNote, ...notes])
     setSelectedNoteId(newNote.id)
+  }
+
+  const handleUpdateNote = async () => {
+    const note = notes.find(n => n.id === selectedNoteId)
+    if (!note) return
+    setIsUpdating(true)
+    setError(null)
+    try {
+      const res = await fetch('/api/notes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: note.title, content: note.content }),
+      })
+      if (!res.ok) {
+        const text = await res.text()
+        throw new Error(text)
+      }
+      // Optionally, you could update the note with the returned data
+    } catch (err: any) {
+      setError(err.message || 'Failed to update note')
+    } finally {
+      setIsUpdating(false)
+    }
+  }
+
+  const handleNoteChange = (field: 'title' | 'content', value: string) => {
+    setNotes(notes =>
+      notes.map(note =>
+        note.id === selectedNoteId ? { ...note, [field]: value } : note
+      )
+    )
   }
 
   const selectedNote = notes.find(note => note.id === selectedNoteId)
@@ -63,8 +96,25 @@ const NotesSidebar = () => {
       <div className="p-6 flex-1 overflow-y-auto" style={{ width: '80%' }}>
         {selectedNote ? (
           <div>
-            <h2 className="text-2xl font-bold mb-4">{selectedNote.title}</h2>
-            <div className="text-gray-200 whitespace-pre-line">{selectedNote.content}</div>
+            <input
+              className="text-2xl font-bold mb-4 bg-transparent border-b border-gray-600 focus:outline-none w-full text-white"
+              value={selectedNote.title}
+              onChange={e => handleNoteChange('title', e.target.value)}
+            />
+            <textarea
+              className="text-gray-200 whitespace-pre-line bg-transparent border border-gray-600 rounded w-full mt-2 p-2 focus:outline-none"
+              style={{ minHeight: '200px' }}
+              value={selectedNote.content}
+              onChange={e => handleNoteChange('content', e.target.value)}
+            />
+            <button
+              className="mt-4 px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg shadow transition-all duration-200 disabled:opacity-50"
+              onClick={handleUpdateNote}
+              disabled={isUpdating}
+            >
+              {isUpdating ? 'Updating...' : 'Update'}
+            </button>
+            {error && <div className="text-red-400 mt-2">{error}</div>}
           </div>
         ) : (
           <div className="text-gray-400 text-lg text-center mt-20">Select a note to view its content.</div>

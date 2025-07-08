@@ -20,7 +20,7 @@ model User {
 model Note {
   id        String   @id @default(uuid())
   title     String
-  content   Json?    // For EditorJS data structure
+  content   Json?    
   author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId  String
   todos     Todo[]   // Related todos
